@@ -1,24 +1,40 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data");
+const connectDB = require("./config/db");
+const colors = require("colors");
 
 const app = express();
+
 dotenv.config();
 
-app.get('/', (req, res) => {
-    res.send("API is Running Successfully");
+connectDB();
+
+// Middleware to parse JSON requests
+app.use(express.json());
+
+// Health check route
+app.get("/", (req, res) => {
+  res.status(200).send("API is Running Successfully");
 });
 
-app.get('/api/chat', (req, res) => {
-    res.send(chats);
+// Get all chats
+app.get("/api/chat", (req, res) => {
+  res.status(200).json(chats);
 });
 
-app.get('/api/chat/:id', (req, res) => {
-    // console.log(req.params.id);
-    const singleChat = chats.find(c => c._id === req.params.id);
-    res.send(singleChat);
+// Get a single chat by ID
+app.get("/api/chat/:id", (req, res) => {
+  const singleChat = chats.find((c) => c._id === req.params.id);
+  if (singleChat) {
+    res.status(200).json(singleChat);
+  } else {
+    res.status(404).json({ message: "Chat not found" });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(5000, console.log(`Server Started on PORT ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server Started on PORT ${PORT}`.yellow);
+});

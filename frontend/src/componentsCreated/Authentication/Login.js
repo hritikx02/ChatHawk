@@ -49,6 +49,7 @@ const Login = () => {
         </Button>
 
         <Button
+          margin="5px 0"
           variant="solid"
           colorScheme="red"
           type="submit"
