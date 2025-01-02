@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;1,300&display=swap');
+
+:root {
+    --background-gradient: linear-gradient(to right, rgba(11, 18, 39, 0.746), rgba(16, 27, 29, 0.915), rgb(3, 33, 36));
+    --box-gradient: linear-gradient(to right, rgba(2, 4, 11, 0.611), rgb(10, 17, 18), rgb(2, 18, 20));
+    --input-gradient: linear-gradient(to right, rgba(207, 207, 172, 0.81), rgba(117, 117, 92, 0.923));
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    background-image: var(--background-gradient);
+}
