@@ -99,6 +99,10 @@ const Signup = () => {
       setLoading(false);
       history.push("/chats")
     } catch (error) {
+      console.error(
+        "Error during signup:",
+        error.response ? error.response.data : error.message
+      );
       toaster.create({
         title: "Error Occured!",
         type: "error",

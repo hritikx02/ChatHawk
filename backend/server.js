@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data");
 const connectDB = require("./config/db");
@@ -13,6 +14,9 @@ connectDB();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Health check route
 app.get("/", (req, res) => {
